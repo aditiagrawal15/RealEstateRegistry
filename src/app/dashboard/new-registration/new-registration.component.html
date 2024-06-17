@@ -1,0 +1,416 @@
+<div style="background-color:#EFE4B0;overflow-x: hidden;">
+    <app-header [loggedInUserName]="loggedInUserName" [userId]="userId" [loggedInTime]="loggedInTime"></app-header>
+    <div class="main-div">
+        <mat-horizontal-stepper style=" background-color: rgb(185, 122, 87);" [linear]="isLinear" #stepper>
+            <mat-step [completed]="step1Completed">
+                <form [formGroup]="firstFormGroup" (ngSubmit)="next(firstFormGroup.value)">
+                    <ng-template matStepLabel>Property Details</ng-template>
+                    <mat-hint style="color:black;margin-top:-1vw">
+                        <mat-icon style=" display: inline-flex;  vertical-align: middle;" matSuffix>info</mat-icon>
+                        Please <a style="color:black;" href="javascript: void(0);" (click)="drawer.toggle()">Click
+                            here</a> for
+                        important updates before proceeding further.
+                    </mat-hint>
+                    <mat-drawer-container style="background-color: rgb(185, 122, 87);">
+                        <mat-drawer class="drawer" #drawer>
+                            <h2 style="text-align: center;">Important</h2>
+                            <p style="margin-left: 1vw;">
+                                <mat-icon style=" display: inline-flex;  vertical-align: middle">grade</mat-icon>Type of
+                                Property : Please select which kind of property user are registering i.e House, Shop or
+                                Farm.
+                            </p>
+                            <p style="margin-left: 1vw;">
+                                <mat-icon style=" display: inline-flex;  vertical-align: middle;">grade</mat-icon>Type
+                                of Buying : If user want to directly buy a property, please select <b>Direct.</b> Else
+                                if
+                                user want to proceed with a Sale Agreemt process, please select <b>Time Required.</b>
+                            </p>
+                            <p style="margin-left: 1vw;">
+                                <mat-icon style=" display: inline-flex;  vertical-align: middle;">grade</mat-icon>
+                                Property Id : Please input Property Id on which user want to make registry.
+                            </p>
+                            <p style="margin-left: 1vw;">
+                                <mat-icon style=" display: inline-flex;  vertical-align: middle;">grade</mat-icon>
+                                Seller Aadhar Number : This input is required to confirm if seller has rights to sell
+                                property. This helps user in terms of <b>Title Deed.</b>
+                            </p>
+                            <p style="margin-left: 1vw;">
+                                <mat-icon style=" display: inline-flex;  vertical-align: middle;">grade</mat-icon>
+                                Agreement Id : Please type any prior Agreement Id.
+                                Note: This is the id generated if user has a sale agreement of a particular
+                                property. Please input this only if user have any prior agreement whose expected date is
+                                completed.
+                            </p>
+                        </mat-drawer>
+                        <mat-drawer-content style="overflow: hidden;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="content">
+                                        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                                            <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%">
+                                                <mat-card style="background-color: #EFE4B0;
+                                                    height:  20vw;
+                                                    margin: 1vw 1vw 1vw 1vw;overflow: auto;" class="mat-elevation-z4">
+                                                    <mat-card-header>
+
+                                                    </mat-card-header>
+                                                    <mat-card-content>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label style="text-align: left; display:block;">Type of
+                                                                    Property</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <select matInput formControlName="typeOfProperty"
+                                                                    name="typeOfProperty" id="typeOfProperty" autofocus>
+                                                                    <option value="" disabled selected>Select Type of
+                                                                        Property
+                                                                    </option>
+                                                                    <option *ngFor="let property of typeOfProperty"
+                                                                        [value]="property">
+                                                                        {{property}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Type of
+                                                                    Buying</label>
+
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <select matInput formControlName="typeOfBuying"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f['typeOfBuying'].errors }"
+                                                                    name="typeOfProperty" id="typeOfProperty" autofocus>
+                                                                    <option value="" disabled selected>Select Type of
+                                                                        Buying
+                                                                    </option>
+                                                                    <option *ngFor="let buying of typeOfBuying"
+                                                                        [value]="buying">
+                                                                        {{buying}}</option>
+                                                                </select>
+                                                                <div *ngIf="submitted && f['typeOfBuying'].errors"
+                                                                    class="invalid-feedback">
+                                                                    <div style=" text-align: left; display:block;"
+                                                                        *ngIf="f['typeOfBuying'].errors['required']">
+                                                                        Buying Type
+                                                                        is required</div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>&nbsp;
+                                                        <!-- <div class="row">
+                                                            
+                                                        </div>&nbsp; -->
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Property
+                                                                    Id</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input style="text-align: left; display:block;"
+                                                                    type="text" id="propertyId"
+                                                                    formControlName="propertyId" class="form-control"
+                                                                    placeholder="Property Id" required autofocus
+                                                                    [ngClass]="{ 'is-invalid': submitted && f['propertyId'].errors }">
+                                                                <div *ngIf="submitted && f['propertyId'].errors"
+                                                                    style="color:#EFE4B0" class="invalid-feedback">
+                                                                    <div style="color: #dc3545;text-align: left; display:block;"
+                                                                        *ngIf="f['propertyId'].errors?.['required']">
+                                                                        Property Id
+                                                                        is required</div>
+
+                                                                    <div style=" color: #dc3545;text-align: left; display:block;"
+                                                                        *ngIf="f['propertyId'].errors?.['pattern']">
+                                                                        Please
+                                                                        provide valid <b>Property Id</b></div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Seller
+                                                                    Aadhar Number
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input style="text-align: left; display:block;"
+                                                                    formControlName="sellerAadhar" type="text"
+                                                                    id="propertyId" class="form-control"
+                                                                    placeholder="Seller Aadhar Number" required
+                                                                    autofocus
+                                                                    [ngClass]="{ 'is-invalid': submitted && f['sellerAadhar'].errors }">
+                                                                <div *ngIf="submitted && f['sellerAadhar'].errors"
+                                                                    class="invalid-feedback">
+                                                                    <div style=" text-align: left; display:block;"
+                                                                        *ngIf="f['sellerAadhar'].errors['required']">
+                                                                        Aadhar
+                                                                        Number
+                                                                        is required</div>
+                                                                    <div style=" text-align: left; display:block;"
+                                                                        *ngIf="f['sellerAadhar'].errors['pattern']">
+                                                                        Aadhar Number must be 12 digits long
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>&nbsp;
+                                                        <!-- <div class="row">
+                                                            
+
+                                                        </div>&nbsp; -->
+
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label style="text-align: left; display:block;">Prior
+                                                                    Agreement
+                                                                    Id, if any
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input style="text-align: left; display:block;"
+                                                                    type="text" id="propertyId" class="form-control"
+                                                                    formControlName="agreementId"
+                                                                    placeholder="Agreement Id" autofocus>
+
+                                                            </div>
+
+                                                        </div>&nbsp;
+
+                                                    </mat-card-content>
+                                                    <mat-card-actions align="end">
+                                                        <app-button matStepperNext
+                                                            style=" cursor:pointer;margin-top: -2vw;margin-right: 2vw;"
+                                                            click="next()" [name]="'Next'" type="submit"></app-button>
+
+                                                    </mat-card-actions>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-drawer-content>
+                    </mat-drawer-container>
+
+                </form>
+
+            </mat-step>
+
+            <mat-step #step2>
+                <form [formGroup]="secondFormGroup">
+                    <ng-template *ngIf="directBuying" matStepLabel>Registry</ng-template>
+                    <ng-template *ngIf="timeRequired" matStepLabel>Sale Agreement</ng-template>
+
+                    <mat-drawer-container *ngIf="timeRequired && !directBuying"
+                        style="background-color: rgb(185, 122, 87);">
+                        <mat-drawer-content style="overflow: hidden;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="content">
+                                        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                                            <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%">
+                                                <mat-card style="background-color: #EFE4B0;
+                                                        height:  22vw;
+                                                        margin: 1vw 1vw 1vw 1vw;overflow: auto;"
+                                                    class="mat-elevation-z4">
+                                                    <mat-card-header>
+
+                                                    </mat-card-header>
+                                                    <mat-card-content>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Purchaser</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input style="text-align: left; display:block;"
+                                                                    type="text" id="purchaser"
+                                                                    formControlName="purchaser" class="form-control"
+                                                                    required autofocus readonly>
+
+                                                            </div>
+
+                                                        </div>&nbsp;
+                                                        <!-- <div class="row">
+                                                                
+                                                            </div>&nbsp; -->
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Seller
+                                                                    Aadhar</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input style="text-align: left; display:block;"
+                                                                    type="text" id="sellerAadhar"
+                                                                    formControlName="sellerAadhar" class="form-control"
+                                                                    placeholder="Enter Seller Aadhar" required autofocus
+                                                                    readonly>
+
+                                                            </div>
+
+                                                        </div>&nbsp;
+                                                        <!-- <div class="row">
+                                                                
+    
+                                                            </div>&nbsp; -->
+
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Tentative
+                                                                    Date of Agreement</label>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input style="text-align: left; display:block;"
+                                                                    type="date" id="tentativeDate"
+                                                                    formControlName="tentativeDate" class="form-control"
+                                                                    placeholder="Enter Tentative Date" required
+                                                                    autofocus>
+
+                                                            </div>
+
+                                                            <div class="col-md-1">
+                                                                <mat-icon
+                                                                    [matTooltip]="'Please select a tentative date of Sale Agreement completion.'"
+                                                                    style="margin-top: 0.5vw; display: inline-flex;  vertical-align: middle;"
+                                                                    matSuffix>info</mat-icon>
+
+                                                            </div>
+                                                        </div>&nbsp;
+
+                                                    </mat-card-content>
+                                                    <mat-card-actions align="end">
+                                                        <button style=" cursor:pointer;margin-top: -2vw;"
+                                                            mat-raised-button matStepperPrevious>Previous</button>
+                                                        <app-button matStepperNext
+                                                            style=" cursor:pointer;margin-top: -2vw;margin-right: 2vw;"
+                                                            (click)="saveSaleAgreement()" [name]="'Submit'"
+                                                            type="submit"></app-button>
+
+
+                                                    </mat-card-actions>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-drawer-content>
+                    </mat-drawer-container>
+                    <mat-drawer-container *ngIf="directBuying && !timeRequired"
+                        style="background-color: rgb(185, 122, 87);">
+                        <mat-drawer-content style="overflow: hidden;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="content">
+                                        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                                            <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%">
+                                                <mat-card style="background-color: #EFE4B0;
+                                                        height:  22vw;
+                                                        margin: 1vw 1vw 1vw 1vw;overflow: auto;"
+                                                    class="mat-elevation-z4">
+                                                    <mat-card-header>
+
+                                                    </mat-card-header>
+                                                    <mat-card-content>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label class="required"
+                                                                    style="text-align: left; display:block;">Stamp
+                                                                    Value</label>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <input style="text-align: left; display:block;"
+                                                                    type="text" id="stampValue"
+                                                                    formControlName="stampValue" class="form-control"
+                                                                    required autofocus readonly>
+
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <app-button style="margin-top: 0.2vw;"
+                                                                    (click)="calculate()" [name]="'Calculate'"
+                                                                    type="submit"></app-button>
+
+                                                            </div>
+                                                        </div>&nbsp;
+                                                        <div *ngIf="!showCalculation && !showThankYou" class="row">
+                                                            <mat-hint>
+                                                                <mat-icon
+                                                                    style="margin-top: 0.5vw; display: inline;  vertical-align: middle;"
+                                                                    matSuffix>info</mat-icon>
+                                                                Please click on calculate button to calculate stamp
+                                                                value of property with Id :
+                                                                {{this.firstFormGroup.value.propertyId}}.
+                                                            </mat-hint>
+                                                        </div>
+                                                        <div *ngIf="showCalculation && !showThankYou" class="row">
+                                                            <mat-hint>
+                                                                <mat-icon
+                                                                    style="margin-top: 0.5vw; display: inline;vertical-align: middle;"
+                                                                    matSuffix>info</mat-icon>
+                                                                Stamp Value calculated is as per 7% of
+                                                                property value Rs. {{propertyValueWithComma}} with 1% as
+                                                                registration fees included. After applying
+                                                                18% GST charges, final payment to be done is Rs.
+                                                                <b>
+                                                                    <h3 style="margin-left: 2vw;">{{finalPayment}} only.
+                                                                    </h3>
+                                                                </b>
+                                                                Please <a
+                                                                    style="cursor: pointer;text-decoration: underline;"
+                                                                    (click)="payNow()">click here</a> to make a payment
+                                                                & proceed further.
+                                                            </mat-hint>
+                                                            <mat-hint>
+                                                                <h2 style="display: inline-block;">NOTE:</h2>
+                                                                7% of the total market value of the property is charged
+                                                                as stamp duty while 1% is charged as registration fee.
+                                                            </mat-hint>
+
+                                                        </div>
+                                                        <div *ngIf="showThankYou && !showCalculation" class="row">
+                                                            <mat-hint>
+                                                                <mat-icon
+                                                                    style="margin-top: 0.5vw; display: inline;  vertical-align: middle;"
+                                                                    matSuffix>info</mat-icon>
+                                                                Thank you for making a payment of Rs.
+                                                                <strong>{{finalPayment}}.</strong>
+                                                                Please click on Submit.
+                                                            </mat-hint>
+                                                        </div>
+
+                                                    </mat-card-content>
+                                                    <mat-card-actions align="end">
+                                                        <button style=" cursor:pointer;margin-top: -2vw;"
+                                                            [disabled]="disablePrevious" mat-raised-button
+                                                            matStepperPrevious>Previous</button>
+                                                        <app-button matStepperNext [isDisabled]="disableSubmit"
+                                                            style=" cursor:pointer;margin-top: -2vw;margin-right: 2vw;"
+                                                            (click)="saveRegistry()" [name]="'Submit'" type="submit">
+                                                        </app-button>
+
+
+                                                    </mat-card-actions>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-drawer-content>
+                    </mat-drawer-container>
+
+
+                </form>
+            </mat-step>
+        </mat-horizontal-stepper>
+        <mat-spinner style="left: 45%;
+        position: absolute;
+        text-align: center;" mode="indeterminate" *ngIf="isLoading"></mat-spinner>
+
+    </div>

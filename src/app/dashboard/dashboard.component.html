@@ -1,0 +1,122 @@
+<div style="background-color:#EFE4B0;overflow-x: hidden;">
+    <app-header [loggedInUserName]="loggedInUserName" [userId]="userId" [loggedInTime]="loggedInTime"></app-header>
+    <div class="main-div">
+       
+        <marquee style="font-size: 2vw;margin:1vw 1vw 1vw 1vw;padding: 1px 2px;">Hi {{name}},Welcome to
+            Real
+            Estate Registry
+            Authority!!</marquee>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content">
+                    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                        <div fxFlex="100%" fxFlex.xs="100%">
+                            <mat-card style="background-color:#EFE4B0;height: 25.3vw;" class="mat-elevation-z4">
+                                <mat-card-header>
+                                    <mat-card-title>Total Registrations</mat-card-title>
+                                    <mat-card-subtitle>Number of real estate registrations done through portal
+                                        till date.
+                                    </mat-card-subtitle>
+                                </mat-card-header>
+
+                                <mat-card-content>
+                                    <p style="text-align:center; font-size: 2vw;">
+                                        {{totalReg}}
+
+                                    </p>
+                                    <img style="width: 100%;
+                                    height: 10%;
+                                    margin-top: -6vw;" src="../../assets/Images/Dashboard right side image.png">
+                                    <!-- <img style="width: 15vw;
+                                    margin-left: 6.8vw;" src="../../assets/Images/Total registrations logo.png"> -->
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-bottom: 1vw;" class="row">
+                    <div class="col-md-6">
+
+                        <app-card [title]="'Total Users'"
+                            [subTitle]="'Number of people registered on Portal till date.'" [cardContent]="totalUsers">
+                        </app-card>
+                    </div>
+                    <div class="col-md-6">
+                        <app-card [title]="'Portal Usability'" [subTitle]="'Number of users log in to the Portal'"
+                            [cardContent]="portalUsb"></app-card>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1vw;" class="row">
+                    <div class="col-md-12">
+                        <div class="content">
+                            <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                                <div fxFlex="100%" fxFlex.xs="100%">
+                                    <mat-card style="background-color:#EFE4B0;" class="mat-elevation-z4">
+                                        <mat-card-header>
+                                            <mat-card-title style="font-size: 1.5vw;"> <img style="width: 3.7vw;
+                                                " src="../../assets/Images/Total owned properties logo.png">Total
+                                                Owned Properties on Portal</mat-card-title>
+                                            <mat-card-subtitle>Number of
+                                                properties owned by people of
+                                                different area and location.
+                                            </mat-card-subtitle>
+                                        </mat-card-header>
+
+                                        <mat-card-content>
+                                            <p style="text-align:center; font-size: 2vw;">{{totalOwnedPro}}
+
+
+                                            </p>
+
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="content">
+                    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                        <div fxFlex="100%" fxFlex.xs="100%">
+                            <mat-card style="background-color:#EFE4B0;height:25vw" class="mat-elevation-z4">
+                                <div>
+                                    <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+                                        <div class="tp-box__side_front tp-box__front">About Us
+                                        </div>
+                                        <div class="tp-box__side_back tp-box__back">
+                                            <p>
+                                                Real Estate Registry Authority is an Act that serves as an
+                                                intermediary between the user and government procedures and helps user
+                                                to make
+                                                <b>Registration Process of their property </b> easier.<br>This application is
+                                                intended to help
+                                                user in order to get the desired seeking information as well :<br>1.
+                                                View list of
+                                                registrations of different properties done so far by the user.<br> 2.
+                                                View
+                                                details of particular property using a unique property number or id i.e.
+                                                property value, property area, property location, last owner of property
+                                                and so on.
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-spinner style="left: 45%;
+        position: absolute;
+        text-align: center;
+        top: 50%;" mode="indeterminate" *ngIf="isLoading"></mat-spinner>
+    </div>
+
+</div>

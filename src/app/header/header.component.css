@@ -1,0 +1,172 @@
+.first-div {
+  height: 6.8vw;
+  margin: 1vw 1vw 1vw 1vw;
+  width: 98%;
+  display: inline-block;
+  background-image: linear-gradient(#EFE4B0, rgb(185, 122, 87), #EFE4B0);
+
+}
+
+.navbar {
+  /* overflow: hidden; */
+  margin: -1vw 6vw 1vw 1vw;
+  width: 98%;
+  display: inline-block;
+  background-image: linear-gradient(rgb(185, 122, 87), #EFE4B0, rgb(185, 122, 87));
+}
+
+.navbar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+ /* .navbar a.active {
+  background-color: rgb(185, 122, 87);
+}  */
+
+a.active {
+  background-color:  #EFE4B0;
+}
+
+.subnav {
+  float: left;
+
+}
+
+
+.subnav .subnavbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  margin: 0;
+
+  font-size: 17px;
+}
+
+.navbar a:hover,
+.subnav:hover .subnavbtn {
+  background-color: white;
+  color: black;
+
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  color: black;
+  background-color: #dac0a9;
+  margin: 0vw 1vw 1vw 1vw;
+
+  background-image: linear-gradient(rgb(185, 122, 87), #EFE4B0, rgb(185, 122, 87));
+  width: 97.7%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: left;
+  color: black;
+  text-decoration: none;
+}
+
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+
+.top-left {
+  position: absolute;
+  top: 4vw;
+  left: 11vw;
+  font-size: 2vw;
+  color: rgb(22, 39, 94);
+}
+
+
+.top-right {
+  position: absolute;
+  top: 3vw;
+  right: 9vw;
+  font-size: 11px;
+}
+
+.responsive-logo {
+  width: 14%;
+  position: absolute;
+  top: -2vw;
+  left: -0.6vw;
+
+}
+
+.responsive-user-logo {
+  width: 5%;
+  position: absolute;
+  top: 1.8vw;
+  right: 2vw;
+}
+
+@media only screen and (max-width: 780px) {
+  .responsive-user-logo {
+    right: 5vw
+  }
+}
+
+@media only screen and (max-height : 350px) {
+  .responsive-user-logo {
+    height: 12vh;
+  }
+}
+
+
+@media only screen and (max-height : 100px) {
+  .responsive-user-logo {
+    height: 31vh;
+  }
+}
+
+
+@media only screen and (max-width: 940px) {
+  .top-right {
+    font-size: 8px;
+    top: 0vw;
+  }
+}
+
+@media only screen and (max-width: 806px) {
+  .top-right {
+    font-size: 8px;
+    top: -0.6vw;
+  }
+
+}
+
+.my-actions {
+  margin: 0 2em;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+.badge {
+  position: absolute;
+  border-radius: 20%;
+  background: red;
+  margin-left: -1vw;
+  color: white;
+}

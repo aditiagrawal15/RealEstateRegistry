@@ -1,0 +1,20 @@
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%">
+            <mat-card style="background-color:#EFE4B0;" class="mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title>{{title}}</mat-card-title>
+                    <mat-card-subtitle>{{subTitle}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p style="text-align:center; font-size: 2vw; ">
+                        {{cardContent}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions *ngFor="let a of action">
+                    <button mat-button>{{a}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

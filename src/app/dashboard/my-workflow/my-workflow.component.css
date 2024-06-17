@@ -1,0 +1,19 @@
+.main-div {
+    margin: -1vw 1vw 1vw 1vw;
+    width: 97.7%;
+    height: 29.7vw;
+    display: inline-block;
+    background-color: rgb(185, 122, 87);
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.first-card {
+    margin: 1vw 1vw 1vw 1vw;
+}
+.required:after {
+    content: " *";
+    color: red;
+
+}

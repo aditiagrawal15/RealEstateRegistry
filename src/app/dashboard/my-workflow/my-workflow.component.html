@@ -1,0 +1,102 @@
+<div style="background-color:#EFE4B0;overflow-x: hidden;">
+    <app-header [loggedInUserName]="loggedInUserName" [userId]="userId" [loggedInTime]="loggedInTime"></app-header>
+    <div class="main-div">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let value of workFlowData"
+                style="margin:1vw 1vw 1vw 1vw;background-color: #EFE4B0;">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h3><b>Workflow Number : {{value.id}}</b></h3>
+                        <h3 style="margin-left:60vw;margin-top:1vw;margin-bottom:1vw"><b>Status : </b></h3>
+                        <h3 style="margin-left:0.4vw;margin-top:1vw;margin-bottom:1vw"
+                            [ngStyle]="value.status === 'PENDING' ? {'background-color': 'yellow','padding':'5px 5px 5px 5px'} : value.status === 'REJECTED' ? {'background-color': 'red','padding':'5px 5px 5px 5px'} : {'background-color': 'green','padding':'5px 5px 5px 5px'}">
+                            <b>{{value.status}}</b>
+                        </h3>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div style="margin-left:1vw">
+                    <p><b>Pending with : </b>{{value.pendingWithNameWithAadhar}}</p>
+                    <p><b>Description : </b>{{value.details}}</p>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p><b>Raised by :</b> {{value.raisedByNameWithAadhar}}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p><b>Owner Approver :</b> {{value.sellerApproverByNameWithAadhar}}</p>
+                        </div>
+                    </div>
+                    <p><b>Registrar Assigned : </b>{{value.registrarApproverByNameWithAadhar}}</p>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p><b>Buyer Comments :</b> {{value.buyerComments}}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p><b>Seller Comments : </b>{{value.sellerComments}}</p>
+                        </div>
+                    </div>
+                    <p><b>Registrar Comments : </b>{{value.registrarComments}}</p>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p><b>Created Date : </b>{{value.createdDate}}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p><b>Updated Date : </b>{{value.updatedDate}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="value.status === 'APPROVED' && role === 'BUYER'" class="row" style="float:right">
+                    <div class="col-md-1">
+                        <app-button *ngIf="value.saleAgreementId !== null" title="Download Sale Agreement" style="cursor: pointer;
+                        " [name]="'Download'" (click)="downloadPdf(value.id,'Sale Agreement')" type="submit">
+                        </app-button>
+                        <app-button *ngIf="value.saleAgreementId === null" title="Download Sale Agreement" style="cursor: pointer;
+                        " [name]="'Download'" (click)="downloadPdf(value.id,'Sale Deed')" type="submit">
+                        </app-button>
+                    </div>
+
+                </div>
+                <form [formGroup]="responseForm">
+                    <div *ngIf="value.status === 'PENDING' && value.pendingWithNameWithAadhar.includes(userAadhar) && role !== 'BUYER'"
+                        class="row" style="float:right">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="required" style="text-align: left; display:block;margin-top: 1vw;
+                                    margin-left: 2.5vw"></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="required" style="text-align: left; display:block;    width: 20vw;"
+                                        type="text" id="comments" formControlName="comments" class="form-control"
+                                        placeholder="Enter your comments." required autofocus
+                                        [ngClass]="{ 'is-invalid': submitted && f['comments'].errors }">
+                                    <div *ngIf="submitted && f['comments'].errors" class="invalid-feedback">
+                                        <div style=" width: 20vw;text-align: left; display:block;"
+                                            *ngIf="f['comments'].errors['required']">
+                                            Comments are required</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-3">
+                            <app-button style="cursor: pointer; margin-left:3vw
+                        " (click)="saveResponse('APPROVED',value.id, responseForm.value)" [name]="'Approve'"
+                                type="submit"></app-button>
+                        </div>
+                        <div class="col-md-3">
+                            <app-button style="cursor: pointer;
+                        " (click)="saveResponse('REJECTED',value.id,responseForm.value)" [name]="'Reject'"
+                                type="submit"></app-button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>

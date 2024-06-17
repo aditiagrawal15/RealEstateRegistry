@@ -1,0 +1,82 @@
+.main-div {
+    margin: -1vw 1vw 1vw 1vw;
+    width: 97.7%;
+    height: 30.8vw;
+    display: inline-block;
+    background-color: rgb(185, 122, 87);
+    box-sizing: border-box;
+}
+
+.first-card {
+    margin: 1vw 1vw 1vw 1vw;
+}
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+    stroke: rgb(185, 122, 87);
+}
+.tp-wrapper {
+    -webkit-perspective: 800px;
+    perspective: 800px;
+}
+
+.tp-box {
+    position: relative;
+    width: 100%;
+    height: 15vw;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: transform 1s;
+    -ms-transform: transform 1s;
+    transform: transform 1s;
+}
+
+.tp-box__side_front {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* color: Black; */
+    text-align: center;
+    line-height: 22vw;
+    font-size: 24px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tp-box__front {
+    background-image: linear-gradient(#EFE4B0, rgb(185, 122, 87), #EFE4B0);
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.tp-box__back {
+    background-image: linear-gradient(#EFE4B0, rgb(185, 122, 87), #EFE4B0);
+    -webkit-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.tp-box__side_back {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    font-size: 1.2vw;
+    line-height: 1.7vw;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}

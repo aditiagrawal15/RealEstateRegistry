@@ -1,0 +1,44 @@
+<div class="first-div">
+    <img class="responsive-logo" src="../../assets/Logo/App_Logo.png">
+    <div class="top-left"><b>REAL ESTATE REGISTRY AUTHORITY</b></div>
+    <div class="top-right">
+        <b>{{loggedInUserName}}<br>Last Logged in :{{loggedInTime}}<br></b>
+    </div>
+    <img class="responsive-user-logo" src="../../assets/Logo/Logged in user logo.png">
+
+</div>
+<div class="navbar">
+    <a [routerLink]="['/dashboard']" [queryParams]="{userId:userId,name:loggedInUserName,loginTime:loggedInTime}"
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Dashboard</a>
+
+    <a [routerLink]="['/new-registration']" [queryParams]="{userId:userId,name:loggedInUserName,loginTime:loggedInTime}"
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!hideTabRegistrar && !hideTabSeller"
+        (click)="showRegistrationWarning();">New
+        Registration</a>
+
+    <div class="subnav">
+        <button *ngIf="!hideTabRegistrar" class="subnavbtn push-div">View Details<mat-icon style=" display: inline-flex;
+            vertical-align: middle;margin-right: 1vw;">keyboard_arrow_down</mat-icon></button>
+        <div class="subnav-content">
+            <a [routerLink]="['/registry-view-details']"
+                [queryParams]="{userId:userId,name:loggedInUserName,loginTime:loggedInTime}" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}" *ngIf="!hideTabSeller">Registry</a>
+            <a [routerLink]="['/property-view-details']"
+                [queryParams]="{userId:userId,name:loggedInUserName,loginTime:loggedInTime}" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">Property</a>
+        </div>
+    </div>
+
+    <a *ngIf="!hideTabRegistrar" [routerLink]="['/buy-property']"
+        [queryParams]="{userId:userId,name:loggedInUserName,loginTime:loggedInTime}" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}" (click)="buyProperty();">Buy a property</a>
+    <mat-icon [matTooltip]="'Logout'" style="float:right;margin-right: 1vw;cursor: pointer;" (click)="logoutFromApp()">
+        power_settings_new</mat-icon>
+
+    <a [routerLink]="['/my-workflow']" [queryParams]="{userId:userId,name:loggedInUserName,loginTime:loggedInTime}"
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">My Workflow</a>
+    <div *ngIf="notificationCount > 0">
+        <span class="badge">{{notificationCount}}</span>
+    </div>
+
+</div>

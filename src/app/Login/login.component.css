@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.top-left {
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    font-size: 2vw;
+    color: rgb(103, 152, 175);
+}
+
+
+.left-side {
+    width: 65%;
+
+}
+
+.right-side {
+    width: 35%;
+    height: 43vw;
+    background-image: linear-gradient(rgb(103, 152, 175), #161d31);
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+}
+
+.responsive-logo {
+    width: 40%;
+    position: absolute;
+    bottom: 1vw;
+
+}
+.required:after {
+    content:" *";
+    color: red;
+  }
+
+  mat-chip-list:focus {
+    outline: 0;
+  }
+  :host ::ng-deep .mat-chip {
+    border-radius: 5px;
+  }
